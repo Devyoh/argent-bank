@@ -1,0 +1,188 @@
+swagger: "2.0"
+info:
+  title: Transactions API
+  version: 1.0.0
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /user/transactions:
+    get:
+      summary: Retrieve all transactions for the current month
+      parameters:
+        - in: query
+          name: month
+          type: string
+          description: The month for which to retrieve the transactions (the current month)
+          default: "2023-04"
+          required: true
+      responses:
+        200:
+          description: List of transactions for the specified month
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Transaction"
+        400:
+          description: Invalid request
+
+    post:
+      summary: Add a new transaction
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: JWT token for authentication
+          required: true
+        - in: body
+          name: body
+          schema:
+            $ref: "#/definitions/Transaction"
+          required: true
+      responses:
+        200:
+          description: Transaction successfully created
+        400:
+          description: Invalid request (incorrect transaction data)
+
+  /user/transactions/{transactionId}:
+    get:
+      summary: Retrieve details of a specific transaction
+      parameters:
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: Transaction identifier
+        - in: query
+          name: month
+          type: string
+          required: true
+          description: The month for which to retrieve the transaction
+      responses:
+        200:
+          description: Transaction details
+          schema:
+            $ref: "#/definitions/Transaction"
+        404:
+          description: Transaction not found
+
+    put:
+      summary: Modify an existing transaction
+      parameters:
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: Transaction identifier
+        - in: query
+          name: month
+          type: string
+          required: true
+          description: The month for which to modify the transaction
+        - in: body
+          name: body
+          schema:
+            $ref: "#/definitions/Transaction"
+          required: true
+      responses:
+        200:
+          description: Transaction successfully updated
+        400:
+          description: Invalid request (incorrect transaction data)
+        404:
+          description: Transaction not found
+
+    delete:
+      summary: Delete an existing transaction
+      parameters:
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: Transaction identifier
+      responses:
+        200:
+          description: Transaction successfully deleted
+        404:
+          description: Transaction not found
+
+definitions:
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Identifiant unique de la transaction
+      month:
+        type: string
+        description: The month of the transaction
+      date:
+        type: string
+        format: date
+        description: Date de la transaction
+      description:
+        type: string
+        description: Description de la transaction
+      amount:
+        type: number
+        format: float
+        description: Montant de la transaction
+      balance:
+        type: number
+        format: float
+        description: Solde du compte après la transaction
+    required:
+      - date
+      - description
+      - amount
+      - balance
+  User:
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+      firstName:
+        type: string
+        description: user first name
+      lastName:
+        type: string
+        description: user last name
+  Login:
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
+  ApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          email:
+            type: string
+  LoginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  UserProfile:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
