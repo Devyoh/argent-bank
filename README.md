@@ -9,11 +9,9 @@ Built a React Redux project with external datas from a API
 - Javascript
 - CSS
 - Visual Studio code
-- [Npm](https://www.npmjs.com/package/npm) (v8.19.2)
-- [NodeJS](https://nodejs.org/en/) (v18.12.1)
-- [React](https://fr.reactjs.org/) (v13.4.0)
-- [React-router-dom](https://reactrouter.com/) (v6.9.0)
-- [Axios](https://axios-http.com/docs/intro) (v1.3.4)
+- [React](https://fr.reactjs.org/) (v18.2.0)
+- [React-router-dom](https://reactrouter.com/) (v6.10.0)
+- [Axios](https://axios-http.com/docs/intro) (v1.3.5)
 - [Redux Toolkit](https://redux-toolkit.js.org/) (v1.9.3)
 
 ### Populated Database Data
