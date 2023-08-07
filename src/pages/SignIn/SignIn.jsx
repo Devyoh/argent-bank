@@ -62,13 +62,13 @@ function SignIn() {
       "steve@rogers.com": "password456",
     };
 
-    // Vérifier si l'email entré est autorisé
+    // Check if the email entered is authorized
     if (!Object.keys(allowedCredentials).includes(email)) {
       setCustomError("This email is not allowed");
       return;
     }
 
-    // Vérifier si le mot de passe entré correspond au mot de passe de l'email autorisé
+    // Check if the entered password matches the authorized email password
     if (allowedCredentials[email] !== password) {
       setCustomError("This password is not allowed");
       return;

@@ -20,7 +20,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState("");
 
-  // Met à jour le nom d'affichage lorsque le profil est chargé
+  // Updates the display name when the profile is loaded
   useEffect(() => {
     if (profile) {
       setDisplayName(profile.fullName);
@@ -28,8 +28,8 @@ const ProfilePage = () => {
   }, [profile]);
 
   /**
-   * Met à jour le nom de l'utilisateur dans le profil.
-   * @param {*} newName - Le nouveau nom complet de l'utilisateur.
+   * Updates user name in profile.
+   * The user's new full name.
    */
   const handleNameUpdate = async (newName) => {
     const jwtToken = localStorage.getItem("jwtToken");
@@ -38,23 +38,23 @@ const ProfilePage = () => {
       lastName: newName.split(" ")[1],
     };
 
-    // Appeler l'action "updateUserProfile" pour mettre à jour le profil de l'utilisateur
-    // avec les nouvelles informations (updatedProfile), en utilisant le token JWT
+    // Call the "updateUserProfile" action to update the user's profile
+    // with the new information (updatedProfile), using the JWT token
     dispatch(updateUserProfile({ token: jwtToken, updatedProfile }));
 
     setDisplayName(newName);
   };
 
   useEffect(() => {
-    // Récupérer le token JWT depuis le localStorage
+    // Retrieve JWT token from localStorage
     const jwtToken = localStorage.getItem("jwtToken");
-    // Vérifier si le token JWT existe
+    // Check if JWT token exists
     if (!jwtToken) {
-      // Si l'utilisateur n'est pas connecté (pas de token JWT trouvé), rediriger vers la page de connexion
+      // If user is not logged in (no JWT token found), redirect to login page
       navigate("/login");
     } else {
-      // Si un token JWT est présent (l'utilisateur est connecté),
-      // Récupérer le profil de l'utilisateur depuis l'API backend
+      // If a JWT token is present (user is logged in),
+      // Retrieve user profile from backend API
       dispatch(fetchUserProfile(jwtToken));
     }
   }, [dispatch, navigate]);
@@ -76,7 +76,7 @@ const ProfilePage = () => {
         <h2 className="sr-only">Accounts</h2>
         {accountData.map((account) => (
           <Account
-            // concatène le titre et le numéro de compte, pour obtenir une clé unique pour chaque élément, même si les numéros de compte sont identiques
+            // concatenates the title and the account number, to obtain a unique key for each element, even if the account numbers are identical
             key={`${account.title}-${account.accountNumber}`}
             title={account.title}
             accountNumber={account.accountNumber}

@@ -3,15 +3,7 @@ import featureItemsData from "../../data/featureItemsData";
 import FeatureCard from "./FeatureCard/FeatureCard";
 import "./featureItems.css"
 
-
-
-/**
- * Afficher les composants FeatureCard basé sur les données du tableau featureItemsData.
- *
- * Display FeatureCard components based on data from the featureItemsData array.
- *
- * @component
- */
+// Display FeatureCard components based on data from the featureItemsData array.
 
 function FeatureItems() {
   return (

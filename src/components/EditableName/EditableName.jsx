@@ -3,10 +3,10 @@ import "./editableName.css"
 
 /**
  * Component allowing the user to edit their full name.
- * @param {Object} props // Properties passed to the component.
- * @param {string} props.fullName Current full name of the user.
- * @param {Function} props.onSave Function called when the user saves the changes made to their name.
- * @returns {JSX.Element} Le rendu du composant EditableName.
+ * Properties passed to the component.
+ * Current full name of the user.
+ * Function called when the user saves the changes made to their name.
+ * Rendering the EditableName component.
  */
 
 const EditableName = ({ fullName, onSave }) => {
@@ -30,7 +30,7 @@ const EditableName = ({ fullName, onSave }) => {
     // setEditing(false);
   };
 
-  //Gestion de l'affichage du nom en appuyant sur "entrée"
+  //Management of the display of the name by pressing "enter"
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSave();
